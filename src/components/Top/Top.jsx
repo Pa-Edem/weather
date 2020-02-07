@@ -32,6 +32,10 @@ export default class Top extends React.Component {
 		this.onToggleSelectLocation();
 	}
 
+	componentDidUpdate() {
+		this.textInput && this.textInput.focus();
+	}
+
 	render() {
 		const { isSelectLocationOpen } = this.state;
 
@@ -66,6 +70,9 @@ export default class Top extends React.Component {
 											<input
 												type="text"
 												className="top_popper--input"
+												ref={input => {
+													this.textInput = input;
+												}}
 												onChange={this.onLocationNameChange.bind(this)}
 											/>
 											<button

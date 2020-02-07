@@ -1,0 +1,28 @@
+.app {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&_container {
+		position: relative;
+		width: 600px;
+		height: 400px;
+		border: 1px solid #999;
+		border-radius: 3px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&_loading {
+		position: absolute;
+		top: 30px;
+		left: 40px;
+		color: #004;
+	}
+
+	&_section {
+		flex: 1 1 50%;
+	}
+}

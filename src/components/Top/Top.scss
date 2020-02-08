@@ -51,6 +51,11 @@
 			background: rgba($color: #fff, $alpha: 0.2);
 		}
 
+		&:disabled {
+			background: rgba($color: #fff, $alpha: 0.2);
+			cursor: wait;
+		}
+
 		&--select {
 			border: none;
 			border-left: 1px solid #fff;

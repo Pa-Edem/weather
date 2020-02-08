@@ -50,14 +50,23 @@ export default class App extends React.Component {
 					temp: data.list[0].main.temp.toFixed(0),
 					text: data.list[0].weather[0].description,
 					icon: iconBase + data.list[0].weather[0].icon + iconEnd,
-					speed: data.list[0].wind.speed,
+					speed: data.list[0].wind.speed.toFixed(0),
 					isLoading: false,
 					forcast: newForcast,
 				});
 			})
 			.catch(err => {
 				if (err) {
-					console.error('Cannot fetch Weather Data from API, ', err);
+					this.setState({
+						city: 'Некорректный запрос',
+						temp: '',
+						text: '',
+						icon: '',
+						speed: '',
+						forcast: [],
+					});
+
+					console.error(err);
 				}
 			});
 	}

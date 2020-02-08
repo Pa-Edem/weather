@@ -10,12 +10,14 @@ export default class Top extends React.Component {
 		super(props);
 		this.state = {
 			isSelectLocationOpen: false,
+			isDisabled: true,
 		};
 	}
 
 	onToggleSelectLocation() {
 		this.setState(prevState => ({
 			isSelectLocationOpen: !prevState.isSelectLocationOpen,
+			isDisabled: true,
 		}));
 	}
 
@@ -23,9 +25,15 @@ export default class Top extends React.Component {
 		this.setState({
 			city: event.target.value,
 		});
+		if (this.state.city) {
+			this.setState({
+				isDisabled: false,
+			});
+		}
 	}
 
-	onSelectCity() {
+	onSelectCity(e) {
+		e.preventDefault();
 		const { city } = this.state;
 		const { eventEmitter } = this.props;
 		eventEmitter.emit('updateWeather', city);
@@ -66,7 +74,7 @@ export default class Top extends React.Component {
 										className="top_popper"
 										ref={ref}
 										data-placement={placement}>
-										<div className="top_popper--form">
+										<form className="top_popper--form">
 											<input
 												type="text"
 												className="top_popper--input"
@@ -77,10 +85,11 @@ export default class Top extends React.Component {
 											/>
 											<button
 												className="top_btn top_btn--select"
+												disabled={this.state.isDisabled}
 												onClick={this.onSelectCity.bind(this)}>
 												Select
 											</button>
-										</div>
+										</form>
 										<div ref={arrowProps.ref} style={arrowProps.style} />
 									</div>
 								)

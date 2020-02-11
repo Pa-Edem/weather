@@ -3,21 +3,22 @@ import './Bottom.scss';
 
 import Forcast from '../Forcast/Forcast';
 
-export default class Bottom extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
+const Bottom = props => {
+	const { backdrop } = props;
+	const classes = ['bottom'];
+	if (backdrop) {
+		classes.push('backdrop');
 	}
-
-	render() {
-		return (
-			<div className="bottom">
+	return (
+		<div className={classes.join(' ')}>
+			{!backdrop ? (
 				<Forcast
-					forcast={this.props.forcast}
-					iconBase={this.props.iconBase}
-					iconEnd={this.props.iconEnd}
+					forcast={props.forcast}
+					iconBase={props.iconBase}
+					iconEnd={props.iconEnd}
 				/>
-			</div>
-		);
-	}
-}
+			) : null}
+		</div>
+	);
+};
+export default Bottom;

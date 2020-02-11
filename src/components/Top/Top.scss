@@ -52,8 +52,9 @@
 		}
 
 		&:disabled {
-			background: rgba($color: #fff, $alpha: 0.2);
-			cursor: wait;
+			background: transparent;
+			color: transparent;
+			cursor: not-allowed;
 		}
 
 		&--select {

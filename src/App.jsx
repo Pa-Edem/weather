@@ -5,13 +5,14 @@ import axios from 'axios';
 
 import Top from './components/Top/Top.jsx';
 import Bottom from './components/Bottom/Bottom.jsx';
+import Loader from './components/Loader/Loader.jsx';
 
 const API_KEY = 'b1ee199019e906629a5ac9ff6d363565';
 const urlBase = 'http://api.openweathermap.org/data/2.5/forecast';
 const iconBase = 'http://openweathermap.org/img/wn/';
 const iconEnd = '@2x.png';
 const unit = 'metric';
-const lang = 'ru';
+const lang = 'fi';
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -19,11 +20,16 @@ export default class App extends React.Component {
 		this.state = {
 			city: 'Murmansk',
 			isLoading: true,
+			backdrop: true,
 			forcast: [],
 		};
 	}
 
 	updateWeather() {
+		this.setState({
+			isLoading: true,
+			backdrop: true,
+		});
 		const { city } = this.state;
 		const URL = `${urlBase}?q=${city}&appid=${API_KEY}&units=${unit}&lang=${lang}`;
 		axios
@@ -52,18 +58,16 @@ export default class App extends React.Component {
 					icon: iconBase + data.list[0].weather[0].icon + iconEnd,
 					speed: data.list[0].wind.speed.toFixed(0),
 					isLoading: false,
+					backdrop: false,
 					forcast: newForcast,
 				});
 			})
 			.catch(err => {
 				if (err) {
 					this.setState({
-						city: 'Некорректный запрос',
-						temp: '',
-						text: '',
-						icon: '',
-						speed: '',
-						forcast: [],
+						city: 'Virheellinen kaupungin nimi',
+						isLoading: false,
+						backdrop: true,
 					});
 
 					console.error(err);
@@ -89,12 +93,13 @@ export default class App extends React.Component {
 			icon,
 			speed,
 			forcast,
+			backdrop,
 		} = this.state;
 
 		return (
 			<div className="app">
 				<div className="app_container">
-					{isLoading && <h3 className="app_loading">Loading Weather...</h3>}
+					{isLoading && <Loader />}
 					{!isLoading && (
 						<div className="app_section">
 							<Top
@@ -105,11 +110,17 @@ export default class App extends React.Component {
 								text={text}
 								speed={speed}
 								eventEmitter={this.props.eventEmitter}
+								backdrop={backdrop}
 							/>
 						</div>
 					)}
 					<div className="app_section">
-						<Bottom forcast={forcast} iconBase={iconBase} iconEnd={iconEnd} />
+						<Bottom
+							forcast={forcast}
+							iconBase={iconBase}
+							iconEnd={iconEnd}
+							backdrop={backdrop}
+						/>
 					</div>
 				</div>
 			</div>

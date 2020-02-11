@@ -1,0 +1,25 @@
+.loader {
+	position: absolute;
+	top: 40px;
+	color: #fff;
+	width: 100%;
+	text-align: center;
+	-webkit-animation: loader 2s infinite;
+	animation: loader 2s infinite;
+
+	& p {
+		font-size: 40px;
+	}
+}
+
+@keyframes loader {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

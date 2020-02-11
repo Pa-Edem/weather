@@ -18,6 +18,7 @@ export default class Top extends React.Component {
 		this.setState(prevState => ({
 			isSelectLocationOpen: !prevState.isSelectLocationOpen,
 			isDisabled: true,
+			backdrop: true,
 		}));
 	}
 
@@ -51,8 +52,9 @@ export default class Top extends React.Component {
 			<div className="top">
 				<div className="top_wrap">
 					<div className="top_date">{this.props.time}</div>
-					<div className="top_title">Weather Up</div>
+					<div className="top_title">Säätiedot</div>
 				</div>
+
 				<Weather {...this.props} />
 
 				<div className="top_ui--wrap">
@@ -63,7 +65,7 @@ export default class Top extends React.Component {
 									className="top_btn"
 									ref={ref}
 									onClick={this.onToggleSelectLocation.bind(this)}>
-									Select location
+									Valitse sijainti
 								</button>
 							)}
 						</Reference>
@@ -87,7 +89,7 @@ export default class Top extends React.Component {
 												className="top_btn top_btn--select"
 												disabled={this.state.isDisabled}
 												onClick={this.onSelectCity.bind(this)}>
-												Select
+												Valitse
 											</button>
 										</form>
 										<div ref={arrowProps.ref} style={arrowProps.style} />

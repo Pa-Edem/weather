@@ -8,10 +8,12 @@ export default class Forcast extends React.Component {
 	}
 
 	render() {
+		const daysOfWeek = ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La'];
 		return (
 			<div className="forcast">
 				{this.props.forcast.map((day, index) => {
-					const today = day.dt_txt.substr(5, 5);
+					const str = new Date(day.dt_txt);
+					const today = `${str.getDate()} ${daysOfWeek[str.getDay()]}`;
 					const icon =
 						this.props.iconBase + day.weather[0].icon + this.props.iconEnd;
 					return (

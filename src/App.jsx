@@ -8,7 +8,7 @@ import Bottom from './components/Bottom/Bottom.jsx';
 import Loader from './components/Loader/Loader.jsx';
 
 const API_KEY = 'b1ee199019e906629a5ac9ff6d363565';
-const urlBase = 'http://api.openweathermap.org/data/2.5/forecast';
+const urlBase = 'https://api.openweathermap.org/data/2.5/forecast';
 const iconBase = 'http://openweathermap.org/img/wn/';
 const iconEnd = '@2x.png';
 const unit = 'metric';

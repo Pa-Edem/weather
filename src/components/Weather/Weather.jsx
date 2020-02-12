@@ -10,11 +10,13 @@ export default class Weather extends React.Component {
 	}
 
 	render() {
-		const { city, temp, text, icon, speed, backdrop } = this.props;
+		const { city, temp, text, icon, speed, backdrop, maa } = this.props;
 
 		return (
 			<div className="weather">
-				<div className="weather_header">{city}</div>
+				<div className="weather_header">
+					{city},&nbsp;{maa}
+				</div>
 				{!backdrop ? (
 					<div className="weather_info">
 						<div className="weather_wrapper">

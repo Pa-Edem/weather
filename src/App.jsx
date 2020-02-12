@@ -53,6 +53,7 @@ export default class App extends React.Component {
 				this.setState({
 					time: data.list[0].dt_txt,
 					city: data.city.name,
+					maa: data.city.country,
 					temp: data.list[0].main.temp.toFixed(0),
 					text: data.list[0].weather[0].description,
 					icon: iconBase + data.list[0].weather[0].icon + iconEnd,
@@ -88,6 +89,7 @@ export default class App extends React.Component {
 			isLoading,
 			time,
 			city,
+			maa,
 			temp,
 			text,
 			icon,
@@ -105,6 +107,7 @@ export default class App extends React.Component {
 							<Top
 								time={time}
 								city={city}
+								maa={maa}
 								temp={temp}
 								icon={icon}
 								text={text}
